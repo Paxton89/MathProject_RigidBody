@@ -14,10 +14,6 @@ public class CanonBall : MonoBehaviour
     private Vector3 _acceleration;
     private Vector3 _velocity;
 
-    private void Awake()
-    {
-    }
-
     void Start()
     {
         _gravity = Vector3.down * 9.81f;
@@ -42,9 +38,9 @@ public class CanonBall : MonoBehaviour
         _velocity += _gravity * Time.deltaTime;
         transform.position += _velocity * Time.deltaTime;
         
-        Debug.DrawLine(transform.position, transform.position + _acceleration, Color.green);
-        Debug.DrawLine(transform.position, transform.position + _velocity, Color.blue);
-        Debug.DrawLine(transform.position + _acceleration, transform.position + _acceleration + _gravity, Color.red);
+        Debug.DrawLine(transform.position, transform.position + _acceleration, Color.green); //Draw Acceleration
+        Debug.DrawLine(transform.position, transform.position + _velocity, Color.blue); // Draw Velocity
+        Debug.DrawLine(transform.position + _acceleration, transform.position + _acceleration + _gravity, Color.red); //Draw Gravity
     }
 
     void Impulse()
@@ -59,9 +55,9 @@ public class CanonBall : MonoBehaviour
         _velocity += (_acceleration +  _gravity) * Time.deltaTime;
         transform.position += _velocity * Time.deltaTime;
         
-        Debug.DrawLine(transform.position, transform.position + _acceleration, Color.green);
-        Debug.DrawLine(transform.position, transform.position + _velocity, Color.blue);
-        Debug.DrawLine(transform.position + _acceleration, transform.position + _acceleration + _gravity, Color.red);
+        Debug.DrawLine(transform.position, transform.position + _acceleration, Color.green); // Draw Acceleration
+        Debug.DrawLine(transform.position, transform.position + _velocity, Color.blue); // Draw Velocity
+        Debug.DrawLine(transform.position + _acceleration, transform.position + _acceleration + _gravity, Color.red); // Draw Gravity
     }
     
     public void SetValues(Vector3 dir, float force)
@@ -69,7 +65,7 @@ public class CanonBall : MonoBehaviour
         _force = dir * force; //merge both values to a vector3
         _acceleration = _force / mass;
         
-        //UnComment this for Canonball mode
+        //UnComment this along with BehaveAsCanonBall() for Canonball mode
         Impulse();
     }
 }
